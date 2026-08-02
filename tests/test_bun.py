@@ -5,27 +5,24 @@ from praktikum.bun import Bun
 class TestBun:
 
     @pytest.mark.parametrize(
-        "name, price",
+        "name",
         [
-            ("black bun", 100),
-            ("white bun", 200.5),
-            ("", 0),
-            ("очень длинное название булочки с пробелами и символами !@#", 9999.99),
+            "black bun",
+            "white bun",
+            "",
+            "очень длинное название булочки с пробелами и символами !@#",
         ],
     )
-    def test_get_name(self, name, price):
+    def test_get_name(self, name):
+        price = 100
         bun = Bun(name, price)
         assert bun.get_name() == name
 
     @pytest.mark.parametrize(
-        "name, price",
-        [
-            ("black bun", 100),
-            ("white bun", 200.5),
-            ("red bun", 0),
-            ("test", -10),
-        ],
+        "price",
+        [100, 200.5, 0, -10],
     )
-    def test_get_price(self, name, price):
+    def test_get_price(self, price):
+        name = "black bun"
         bun = Bun(name, price)
         assert bun.get_price() == price
